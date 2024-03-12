@@ -7,10 +7,12 @@ reports/
 
 # cruft
 **/.cruft.json
+.cruft.json
 
 # .gitconfig
 /etc/gitconfig
 **/.ssh/.gitconfig
+.gitconfig
 **/.gitconfig
 
 # Data files
