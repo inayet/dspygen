@@ -1,5 +1,294 @@
+Here is the cleaned up `.dockerignore` file with duplicates removed:
+
+```docker
 # Caches
 .*_cache/
 
 # Git
 .git/
+
+# .gitconfig
+/etc/gitconfig
+~/.ssh/.gitconfig
+~/.gitconfig
+
+# Ignore Dockerfiles and docker-compose files
+Dockerfile
+docker-compose.yml
+
+# Ignore README files
+README.md
+
+# Ignore test and spec directories
+test/
+spec/
+
+# Ignore log files and directories
+*.log
+log/
+
+# Ignore database files
+*.sqlite3
+*.sqlite3-journal
+
+# Ignore Python specific files/directories
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore Ruby specific files
+*.gem
+*.rbc
+
+# Ignore Javascript specific directories
+dist/
+coverage/
+
+# Ignore IDE specific directories
+.vscode/
+.idea/
+
+# Ignore OS generated files
+*.swp
+*.swo
+.c9/
+*.rvmrc
+.rspec
+/.config
+/coverage/
+/vendor/ruby/
+lib/capybara/**/*.html
+/.bundle
+/.yardoc
+/_yardoc/
+/doc/
+/tmp
+.DS_Store
+/*.gem
+/.byebug_history
+.project
+.config
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+.rvmrc
+.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+node_modules/
+/yarn-error.log
+.env
+.env.development.local
+.env.local
+.env.test.local
+.capybara-*.html
+.rspec_failed
+.rubocop.yml
+.rubocop_*.yml
+
+# venv template
+# Virtualenv
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
+# JEnv template
+.java-version
+.jenv-version
+
+# direnv template
+.direnv
+.envrc
+
+# PyCharm template
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+cmake-build-*/
+.idea/**/mongoSettings.xml
+*.iws
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+.idea/replstate.xml
+.idea/sonarlint/
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+.idea/httpRequests
+.idea/caches/build_file_checksums.ser
+
+# VVVV template
+*~.xml
+bin/
+
+# SSH template
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
+
+# Data template
+*.csv
+*.dat
+*.efx
+*.gbr
+*.key
+*.pps
+*.ppt
+*.pptx
+*.sdf
+*.tax2010
+*.vcf
+*.xml
+
+# Erlang template
+.eunit
+*.o
+*.beam
+*.plt
+erl_crash.dump
+.concrete/DEV_MODE
+.rebar
+rel/example_project
+ebin/*.beam
+deps
+.rebar3
+_build/
+_checkouts/
+
+# Snap template
+parts/
+prime/
+stage/
+*.snap
+/snap/.snapcraft/
+/*_source.tar.bz2
+
+# dotenv template
+
+# PythonVanilla template
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+*.mo
+*.pot
+# .python-version
+#Pipfile.lock
+__pypackages__/
+
+# Linux template
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# JupyterNotebooks template
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+profile_default/
+ipython_config.py
+
+# Elixir template
+/_build
+/cover
+/deps
+/doc
+/.fetch
+*.ez
+/config/*.secret.exs
+.elixir_ls/
+
+# Python template
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+.scrapy
+docs/_build/
+.pybuilder/
+target/
+#Pipfile.lock
+#poetry.lock
+#pdm.lock
+.pdm.toml
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.spyderproject
+.spyproject
+.ropeproject
+/site
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+cython_debug/
+
+# GPG template
+secring.*
+```
+This file now contains unique entries only.

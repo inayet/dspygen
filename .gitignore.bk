@@ -5,12 +5,7 @@ reports/
 # cruft
 *.rej
 
-# .gitconfig
-/etc/gitconfig
-~/.ssh/.gitconfig
-~/.gitconfig
-
-# Data files
+# Data
 *.csv*
 *.dat*
 *.pickle*
@@ -21,9 +16,10 @@ data/
 # direnv
 .envrc
 
-# dotenv - Ignore all .env files regardless of their location
+# dotenv
+.env
 **/.env
-**/.env.local
+.env.local
 
 # Hypothesis
 .hypothesis/
@@ -64,8 +60,8 @@ __pycache__/
 # VS Code
 .vscode/
 
-# Log files
 *.log
+
 
 # Ignore bundler config
 /.bundle
@@ -151,18 +147,3 @@ node_modules/
 .rspec_failed
 .rubocop.yml
 .rubocop_*.yml
-
-# Secrets - Ignore all types of secret files
-*.pem
-*.key
-*.cert
-*.jks
-*.keystore
-*.pkcs12
-*.pfx
-*.p12
-*.p7b
-*.crt
-*.der
-*.cer
-*.p7c
