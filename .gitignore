@@ -5,6 +5,9 @@ reports/
 # cruft
 *.rej
 
+# cruft
+**/.cruft.json
+
 # .gitconfig
 /etc/gitconfig
 **/.ssh/.gitconfig
