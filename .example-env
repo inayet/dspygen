@@ -1,1 +1,3 @@
+# change from .exampel-env to .env. Replace with your own info.
+
 OPENAI_API_KEY= "sk-3b3XXxxXXXXX"
