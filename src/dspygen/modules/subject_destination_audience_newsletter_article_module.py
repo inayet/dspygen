@@ -3,11 +3,12 @@ module that takes in subject, destination, and audience as inputs and returns a 
 "subject_destination_audience_newsletter_article_call" calls this module and returns the result. The Typer app has a
 command "call" that takes in subject, destination, and audience as arguments and prints the result of calling the
 module. The main function initializes the Typer app and calls the
-"subject_destination_audience_newsletter_article_call" function with empty inputs."""
+"subject_destination_audience_newsletter_article_call" function with empty inputs.
+"""
 import dspy
 from typer import Typer
-from dspygen.utils.dspy_tools import init_dspy
 
+from dspygen.utils.dspy_tools import init_dspy
 
 app = Typer()
 

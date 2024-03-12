@@ -2,7 +2,8 @@
 
 """
 import dspy
-from dspygen.utils.dspy_tools import init_dspy        
+
+from dspygen.utils.dspy_tools import init_dspy
 
 
 class CobolToPythonModule(dspy.Module):
@@ -15,6 +16,7 @@ class CobolToPythonModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -26,11 +28,9 @@ def call(cobol):
     print(cobol_to_python_call(cobol=cobol))
 
 
-
 def cobol_to_python_call(cobol):
     cobol_to_python = CobolToPythonModule()
     return cobol_to_python.forward(cobol=cobol)
-
 
 
 def main():
@@ -39,9 +39,10 @@ def main():
     print(cobol_to_python_call(cobol=cobol))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/cobol_to_python/")
 async def cobol_to_python_route(data: dict):
@@ -50,7 +51,6 @@ async def cobol_to_python_route(data: dict):
 
     print(data)
     return cobol_to_python_call(**data)
-
 
 
 """

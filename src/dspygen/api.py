@@ -2,13 +2,12 @@
 import importlib
 import logging
 import os
-from fastapi.middleware.cors import CORSMiddleware  # Import CORS middleware
-
 
 import coloredlogs
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware  # Import CORS middleware
-
+from fastapi.middleware.cors import (
+    CORSMiddleware,  # Import CORS middleware  # Import CORS middleware
+)
 
 from dspygen.utils.file_tools import dspy_modules_dir
 
@@ -16,7 +15,6 @@ app = FastAPI()
 
 
 from importlib import import_module
-import os
 
 
 def load_module_routers(app: FastAPI):

@@ -5,17 +5,17 @@ from loguru import logger
 from playwright.async_api import async_playwright
 
 from dspygen.rdddy.abstract_actor import AbstractActor
+from dspygen.rdddy.abstract_message import *
 from dspygen.rdddy.actor_system import ActorSystem
 from dspygen.rdddy.browser.browser_domain import *
-from dspygen.rdddy.abstract_message import *
 
 
 class BrowserWorker(AbstractActor):
     def __init__(
         self,
         actor_system: ActorSystem,
-        actor_id: Optional[int] = None,
-        page: Optional[Page] = None,
+        actor_id: int | None = None,
+        page: Page | None = None,
         browser=None
     ):
         super().__init__(actor_system, actor_id)

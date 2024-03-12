@@ -239,7 +239,7 @@ def load_yaml_dsl(file_path: str) -> dict[str, Any]:
         return yaml.safe_load(f)
 
 
-def execute_chain(chain: dict[str, Any]) -> dict[str, Union[str, Optional[str]]]:
+def execute_chain(chain: dict[str, Any]) -> dict[str, str | str | None]:
     """Execute a chain of TypedPrompt-derived classes based on the YAML DSL.
 
     Parameters:

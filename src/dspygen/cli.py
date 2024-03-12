@@ -1,11 +1,8 @@
 """dspygen CLI."""
+import os
+import subprocess
 import sys
 from importlib import import_module, metadata
-import subprocess
-
-
-import os
-
 from pathlib import Path
 
 import inflection

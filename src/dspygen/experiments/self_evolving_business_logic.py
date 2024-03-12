@@ -1,6 +1,5 @@
-from dspy import Signature, InputField, OutputField, ChainOfThought, Module, Prediction
 import dspy
-
+from dspy import ChainOfThought, InputField, Module, OutputField, Prediction, Signature
 
 
 # Define Signature Classes for SEBLG Components

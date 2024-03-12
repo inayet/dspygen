@@ -8,4 +8,3 @@ class AbstractSaga(AbstractActor):
     developers can implement coordinated workflows that are robust and aligned with business processes.
     """
 
-    pass

@@ -8,7 +8,7 @@ from dspygen.modules.chat_bot_module import chat_bot_call
 from dspygen.modules.insight_tweet_module import insight_tweet_call
 from dspygen.modules.streamlit_bot_module import streamlit_bot_call
 from dspygen.utils.dspy_tools import init_dspy
-from dspygen.utils.file_tools import source_dir, pages_dir
+from dspygen.utils.file_tools import pages_dir, source_dir
 
 st.title(f"dspygen v{version('dspygen')}")  # type: ignore[no-untyped-call]
 
@@ -23,7 +23,7 @@ st.title(f"dspygen v{version('dspygen')}")  # type: ignore[no-untyped-call]
 #     result = insight_tweet_call(insight_input)
 #     st.write(result)
 
-from st_pages import Page, show_pages, add_page_title
+from st_pages import Page, add_page_title, show_pages
 
 # Optional -- adds the title and icon to the current page
 add_page_title()

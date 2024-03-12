@@ -2,7 +2,8 @@
 
 """
 import dspy
-from dspygen.utils.dspy_tools import init_dspy        
+
+from dspygen.utils.dspy_tools import init_dspy
 
 
 class GenMessageModule(dspy.Module):
@@ -15,6 +16,7 @@ class GenMessageModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -26,11 +28,9 @@ def call(prompt, message):
     print(gen_message_call(prompt=prompt, message=message))
 
 
-
 def gen_message_call(prompt, message):
     gen_message = GenMessageModule()
     return gen_message.forward(prompt=prompt, message=message)
-
 
 
 def main():
@@ -40,9 +40,10 @@ def main():
     print(gen_message_call(prompt=prompt, message=message))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/gen_message/")
 async def gen_message_route(data: dict):
@@ -51,7 +52,6 @@ async def gen_message_route(data: dict):
 
     print(data)
     return gen_message_call(**data)
-
 
 
 if __name__ == "__main__":

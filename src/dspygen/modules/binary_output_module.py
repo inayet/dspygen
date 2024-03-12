@@ -2,7 +2,8 @@
 
 """
 import dspy
-from dspygen.utils.dspy_tools import init_dspy        
+
+from dspygen.utils.dspy_tools import init_dspy
 
 
 class BinaryOutputModule(dspy.Module):
@@ -15,6 +16,7 @@ class BinaryOutputModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -26,11 +28,9 @@ def call(requirements):
     print(binary_output_call(requirements=requirements))
 
 
-
 def binary_output_call(requirements):
     binary_output = BinaryOutputModule()
     return binary_output.forward(requirements=requirements)
-
 
 
 def main():
@@ -39,9 +39,10 @@ def main():
     print(binary_output_call(requirements=requirements))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/binary_output/")
 async def binary_output_route(data: dict):
@@ -50,7 +51,6 @@ async def binary_output_route(data: dict):
 
     print(data)
     return binary_output_call(**data)
-
 
 
 """

@@ -2,17 +2,18 @@
 
 """
 import dspy
+
 from dspygen.utils.dspy_tools import init_dspy
 
 
 class BusinessRequirementsSignature(dspy.Signature):
-    """
-    Transforms business requirement descriptions provided in BPMN format into DMN YAML format.
-    """
+    """Transforms business requirement descriptions provided in BPMN format into DMN YAML format."""
 
     bpmn = dspy.InputField(desc="Business Process Model and Notation as input")
 
-    dmn_yaml = dspy.OutputField(desc="Decision Model and Notation in YAML format as output", prefix="```yaml")
+    dmn_yaml = dspy.OutputField(
+        desc="Decision Model and Notation in YAML format as output", prefix="```yaml"
+    )
 
 
 class BusinessRequirementsModule(dspy.Module):
@@ -25,6 +26,7 @@ class BusinessRequirementsModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -34,7 +36,6 @@ def call(bpmn):
     init_dspy()
 
     print(business_requirements_call(bpmn=bpmn))
-
 
 
 def business_requirements_call(bpmn):
@@ -56,9 +57,10 @@ def main():
     print(business_requirements_call(bpmn=bpmn))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/business_requirements/")
 async def business_requirements_route(data: dict):
@@ -67,7 +69,6 @@ async def business_requirements_route(data: dict):
 
     print(data)
     return business_requirements_call(**data)
-
 
 
 """

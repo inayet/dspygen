@@ -25,7 +25,7 @@ class TypedPrompt(RenderMixin):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 
-    def __call__(self, use_native=False, **kwargs) -> Union[str, dict]:
+    def __call__(self, use_native=False, **kwargs) -> str | dict:
         """This method is invoked when the class instance is called. It performs the following:
         1. Calls the _render() method from the mixin class TypedTemplate to generate a rendered prompt.
         2. Passes the rendered prompt to the Chat instance for user interaction.

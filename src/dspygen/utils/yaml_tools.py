@@ -12,7 +12,7 @@ T = TypeVar("T", bound="YAMLMixin")
 
 # Define a mixin for YAML serialization and deserialization
 class YAMLMixin:
-    def to_yaml(self: BaseModel, file_path: Optional[str] = None) -> str:
+    def to_yaml(self: BaseModel, file_path: str | None = None) -> str:
         yaml_content = yaml.dump(self.model_dump(), default_flow_style=False, width=1000)
         if file_path:
             with open(file_path, "w") as yaml_file:
@@ -28,7 +28,7 @@ class YAMLMixin:
 
     @classmethod
     @contextmanager
-    def context(cls: type[T], file_path: Optional[str] = None):
+    def context(cls: type[T], file_path: str | None = None):
         """Context manager that automatically uses the subclass name as the filename."""
         if file_path is None:
             filename = f"{cls.__name__}.yaml"
@@ -74,7 +74,7 @@ def find_all_keys_in_file(filepath: str, target_key: str) -> list[Any]:
     return find_all_keys(target_key, parsed_yaml_data)
 
 
-def find_all_keys(target_key: str, data: Union[dict, list]) -> list[Any]:
+def find_all_keys(target_key: str, data: dict | list) -> list[Any]:
     """Helper function to find all occurrences of a key in a nested YAML-like dictionary or list and return the associated values.
 
     Parameters:

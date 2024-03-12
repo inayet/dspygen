@@ -13,7 +13,7 @@ lm_template = """from dsp import LM
 class {{ name }}(LM):
     def __init__(self):
         super().__init__(model)
-        
+
         self.provider = "default"
 
         self.history = []
@@ -23,7 +23,7 @@ class {{ name }}(LM):
 
     def __call__(self, prompt, only_completed=True, return_sorted=False, **kwargs):
         pass
-        
+
 """
 
 

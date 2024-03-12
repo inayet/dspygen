@@ -2,22 +2,24 @@
 
 """
 import dspy
+
 from dspygen.utils.dspy_tools import init_dspy
 
 
-import dspy
-
 class GenerateStreamlitComponents(dspy.Signature):
-    """
-    Generate Streamlit components source code based on project and page information.
+    """Generate Streamlit components source code based on project and page information.
     Do not return ```
     """
+
     project = dspy.InputField(desc="Information or context about the project.")
-    page = dspy.InputField(desc="Specific details or requirements for the Streamlit page.")
+    page = dspy.InputField(
+        desc="Specific details or requirements for the Streamlit page."
+    )
 
-    streamlit_components_source_code = dspy.OutputField(desc="Generated source code for Streamlit components to make the page functional.",
-                                                        prefix="```python\n")
-
+    streamlit_components_source_code = dspy.OutputField(
+        desc="Generated source code for Streamlit components to make the page functional.",
+        prefix="```python\n",
+    )
 
 
 class StreamlitBotModule(dspy.Module):
@@ -31,6 +33,7 @@ class StreamlitBotModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -42,11 +45,9 @@ def call(project, page):
     print(streamlit_bot_call(project=project, page=page))
 
 
-
 def streamlit_bot_call(project, page):
     streamlit_bot = StreamlitBotModule()
     return streamlit_bot.forward(project=project, page=page)
-
 
 
 def main():
@@ -56,9 +57,10 @@ def main():
     print(streamlit_bot_call(project=project, page=page))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/streamlit_bot/")
 async def streamlit_bot_route(data: dict):
@@ -67,7 +69,6 @@ async def streamlit_bot_route(data: dict):
 
     print(data)
     return streamlit_bot_call(**data)
-
 
 
 """

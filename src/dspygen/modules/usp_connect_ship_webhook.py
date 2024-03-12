@@ -2,7 +2,8 @@
 
 """
 import dspy
-from dspygen.utils.dspy_tools import init_dspy        
+
+from dspygen.utils.dspy_tools import init_dspy
 
 
 class USPConnectShipWebhookModule(dspy.Module):
@@ -15,6 +16,7 @@ class USPConnectShipWebhookModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -26,11 +28,9 @@ def call(usp_input):
     print(usp_connect_ship_webhook_call(usp_input=usp_input))
 
 
-
 def usp_connect_ship_webhook_call(usp_input):
     usp_connect_ship_webhook = USPConnectShipWebhookModule()
     return usp_connect_ship_webhook.forward(usp_input=usp_input)
-
 
 
 usp_input = """ {
@@ -77,9 +77,10 @@ def main():
     print(usp_connect_ship_webhook_call(usp_input=usp_input))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/usp_connect_ship_webhook/")
 async def usp_connect_ship_webhook_route(data: dict):
@@ -88,7 +89,6 @@ async def usp_connect_ship_webhook_route(data: dict):
 
     print(data)
     return usp_connect_ship_webhook_call(**data)
-
 
 
 """

@@ -1,5 +1,4 @@
-"""
-links.py
+"""links.py
 
 This module defines Pydantic models for WS-BPEL 2.0 links. Links in BPEL are used to establish relationships and dependencies between activities, particularly within structured activities that allow for parallel execution. They are crucial for controlling the execution order and conditions under which activities are started.
 
@@ -12,25 +11,24 @@ The models defined in this module include:
 
 """
 
-from pydantic import BaseModel, Field
 from typing import Optional
+
+from pydantic import BaseModel, Field
 
 
 class Link(BaseModel):
-    """
-    Represents a link between two activities, specifying the source and target of the link.
+    """Represents a link between two activities, specifying the source and target of the link.
     Calculus notation: L ::= link(sourceActivity, targetActivity) where sourceActivity is the ID of the activity where the link originates, and targetActivity is the ID of the activity where the link ends.
     """
     id: str = Field(..., description="Unique identifier for the link.")
     source_activity: str = Field(..., description="Identifier of the source activity for the link.")
     target_activity: str = Field(..., description="Identifier of the target activity for the link.")
-    transition_condition: Optional[str] = Field(None,
+    transition_condition: str | None = Field(None,
                                                 description="Optional condition that determines whether the link is followed.")
 
 
 class Condition(BaseModel):
-    """
-    Represents a condition associated with a link, determining whether the link is followed.
+    """Represents a condition associated with a link, determining whether the link is followed.
     This model simplifies the representation by directly associating conditions with links, but in a comprehensive BPEL model, conditions could be more complex and involve various expressions.
     """
     id: str = Field(..., description="Unique identifier for the condition.")
@@ -39,8 +37,7 @@ class Condition(BaseModel):
 
 
 class LinkSource(BaseModel):
-    """
-    Represents a source activity for a link, specifying the activity from which the link originates.
+    """Represents a source activity for a link, specifying the activity from which the link originates.
     Calculus notation: L ::= link(sourceActivity, targetActivity) where sourceActivity is the ID of the activity where the link originates.
     """
     id: str = Field(..., description="Unique identifier for the link source.")
@@ -48,8 +45,7 @@ class LinkSource(BaseModel):
 
 
 class LinkTarget(BaseModel):
-    """
-    Represents a target activity for a link, specifying the activity where the link ends.
+    """Represents a target activity for a link, specifying the activity where the link ends.
     Calculus notation: L ::= link(sourceActivity, targetActivity) where targetActivity is the ID of the activity where the link ends.
     """
     id: str = Field(..., description="Unique identifier for the link target.")
@@ -57,8 +53,7 @@ class LinkTarget(BaseModel):
 
 
 class LinkCondition(BaseModel):
-    """
-    Represents a condition associated with a link, determining whether the link is followed.
+    """Represents a condition associated with a link, determining whether the link is followed.
     This model allows for more complex conditions involving various expressions.
     """
     id: str = Field(..., description="Unique identifier for the link condition.")

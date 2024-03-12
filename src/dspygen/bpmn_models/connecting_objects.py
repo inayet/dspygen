@@ -1,5 +1,4 @@
-"""
-This module defines Pydantic models for connecting objects commonly used in BPMN (Business Process Model and Notation) diagrams.
+"""This module defines Pydantic models for connecting objects commonly used in BPMN (Business Process Model and Notation) diagrams.
 Connecting objects represent the flow of control, data, or messages between different elements within a BPMN diagram.
 
 The connecting objects defined in this module include:
@@ -13,8 +12,7 @@ from pydantic import BaseModel, Field
 
 
 class SequenceFlow(BaseModel):
-    """
-    Represents the flow of control between two flow objects in a BPMN process.
+    """Represents the flow of control between two flow objects in a BPMN process.
     """
     id: str = Field(..., description="Unique identifier for the sequence flow.")
     source_ref: str = Field(..., description="ID of the source flow object.")
@@ -22,8 +20,7 @@ class SequenceFlow(BaseModel):
 
 
 class MessageFlow(BaseModel):
-    """
-    Represents the flow of messages between two participants in a BPMN collaboration.
+    """Represents the flow of messages between two participants in a BPMN collaboration.
     """
     id: str = Field(..., description="Unique identifier for the message flow.")
     source_ref: str = Field(..., description="ID of the source participant.")
@@ -31,8 +28,7 @@ class MessageFlow(BaseModel):
 
 
 class Association(BaseModel):
-    """
-    Represents a relationship between two elements in a BPMN diagram.
+    """Represents a relationship between two elements in a BPMN diagram.
     """
     id: str = Field(..., description="Unique identifier for the association.")
     source_ref: str = Field(..., description="ID of the source element.")
@@ -40,8 +36,7 @@ class Association(BaseModel):
 
 
 class DataAssociation(BaseModel):
-    """
-    Represents the flow of data between two elements in a BPMN process.
+    """Represents the flow of data between two elements in a BPMN process.
     """
     id: str = Field(..., description="Unique identifier for the data association.")
     source_ref: str = Field(..., description="ID of the source element.")

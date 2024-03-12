@@ -70,4 +70,3 @@ class SignatureDspyModuleModule(dspy.Module):
         source = render(dspy_module_template, model=tmpl_model, docstring="")
 
         return source
-

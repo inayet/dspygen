@@ -7,6 +7,6 @@ class AbstractPolicy(AbstractActor):
     system under various circumstances, ensuring that operations adhere to the defined business logic and
     constraints. Through extending AbstractPolicy, developers can encapsulate and enforce the strategic and
     operational rules that drive the domain's functionality, ensuring consistency and alignment with business
-    objectives."""
+    objectives.
+    """
 
-    pass

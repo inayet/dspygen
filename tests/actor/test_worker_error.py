@@ -1,8 +1,8 @@
 import asyncio
 
 from dspygen.rdddy.abstract_actor import AbstractActor
-from dspygen.rdddy.actor_system import ActorSystem
 from dspygen.rdddy.abstract_message import ExceptionMessage, TerminationMessage
+from dspygen.rdddy.actor_system import ActorSystem
 
 
 class WorkerActor(AbstractActor):
@@ -56,8 +56,6 @@ class RootSupervisorActor(AbstractActor):
 
 
 import pytest
-
-from dspygen.rdddy.actor_system import ActorSystem
 
 
 @pytest.fixture()

@@ -1,12 +1,11 @@
-"""
-This code imports the necessary libraries and modules to run the DFLSSModule. It also defines a function to call the DFLSSModule and a route for a streamlit component. The main function initializes the DFLSSModule and prints the result.
+"""This code imports the necessary libraries and modules to run the DFLSSModule. It also defines a function to call the DFLSSModule and a route for a streamlit component. The main function initializes the DFLSSModule and prints the result.
 """
 import dspy
 from typer import Typer
+
 from dspygen.utils.dspy_tools import init_dspy
 
-
-app = Typer()        
+app = Typer()
 
 
 class DFLSSModule(dspy.Module):
@@ -27,7 +26,7 @@ def dflss_call(prompt):
 def call(prompt):
     """DFLSSModule"""
     init_dspy()
-    
+
     print(dflss_call(prompt=prompt))
 
 
@@ -35,13 +34,15 @@ def call(prompt):
 
 
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/dflss/")
 async def dflss_route(data: dict):
     # Your code generation logic here
     init_dspy()
-    
+
     print(data)
     return dflss_call(**data)
 
@@ -50,7 +51,7 @@ def main():
     init_dspy()
     prompt = ""
     print(dflss_call(prompt=prompt))
-    
+
 
 if __name__ == "__main__":
     main()

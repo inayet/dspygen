@@ -3,24 +3,19 @@
 """
 import dspy
 from typer import Typer
-from dspygen.utils.dspy_tools import init_dspy
 
+from dspygen.utils.dspy_tools import init_dspy
 
 app = Typer()
 
 
-import dspy
-
 class SelectSingleElement(dspy.Signature):
-    """
-    Selects a single element from a list of elements that best matches the given prompt.
-    """
+    """Selects a single element from a list of elements that best matches the given prompt."""
+
     elements = dspy.InputField(desc="A list of elements.")
     prompt = dspy.InputField(desc="A prompt used to match the most relevant element.")
 
     selected_element = dspy.OutputField(desc="The css selector to use with Selenium.")
-
-
 
 
 class GetSelectorModule(dspy.Module):
@@ -41,18 +36,20 @@ def get_selector_call(elements, prompt):
 def call(elements, prompt):
     """GetSelectorModule"""
     init_dspy()
-    
+
     print(get_selector_call(elements=elements, prompt=prompt))
 
 
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/get_selector/")
 async def get_selector_route(data: dict):
     # Your code generation logic here
     init_dspy()
-    
+
     print(data)
     return get_selector_call(**data)
 
@@ -76,7 +73,7 @@ def main():
 """
     prompt = "search box"
     print(get_selector_call(elements=element_dicts, prompt=prompt))
-    
+
 
 if __name__ == "__main__":
     main()

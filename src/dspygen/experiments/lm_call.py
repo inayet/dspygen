@@ -3,11 +3,11 @@
 """
 import ast
 import inspect
-from pydantic import BaseModel
-
-from typing import TypeVar, Type, Set
+from typing import Set, Type, TypeVar
 
 import dspy
+from pydantic import BaseModel
+
 from dspygen.utils.dspy_tools import init_dspy
 
 T = TypeVar("T", bound=BaseModel)
@@ -19,8 +19,7 @@ def eval_dict_str(dict_str: str) -> dict:
 
 
 class CallModuleSignature(dspy.Signature):
-    """
-    Signature for calling a Python callable with a specified prompt and returning the result.
+    """Signature for calling a Python callable with a specified prompt and returning the result.
     We only care about the return annotation not the parameters.
     """
     python_callable = dspy.InputField(desc="The Python callable to be invoked.")
@@ -69,9 +68,8 @@ def call(cable, prompt):
     return call_mod.forward(cable=cable, prompt=prompt)
 
 
-def get_model_source(model: Type[BaseModel], already_seen: Set[Type[BaseModel]] = None) -> str:
-    """
-    Recursively grab the source code of a given Pydantic model and all related models.
+def get_model_source(model: type[BaseModel], already_seen: set[type[BaseModel]] = None) -> str:
+    """Recursively grab the source code of a given Pydantic model and all related models.
 
     Args:
         model: The Pydantic model class to extract source code for.

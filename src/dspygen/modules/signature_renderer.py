@@ -1,8 +1,7 @@
-from pydantic import BaseModel, Field
-
 import dspy
 from dspy import Signature
 from dspy.signatures.field import InputField, OutputField
+from pydantic import BaseModel, Field
 
 from dspygen.modules.gen_pydantic_instance_module import gen_pydantic_instance_call
 from dspygen.typetemp.template.typed_template import TypedTemplate
@@ -43,10 +42,9 @@ class OutputFieldTemplateSpecModel(BaseModel):
 
 
 class SignatureTemplateSpecModel(BaseModel):
-    '''
-        Generate a Signature for the DSPy Framework.
+    '''Generate a Signature for the DSPy Framework.
 
-        Examples:
+    Examples:
         ```python
     class CheckCitationFaithfulness(dspy.Signature):
         """Verify that the text is based on the provided context."""
@@ -108,9 +106,7 @@ def create_signature_class_from_model(model: SignatureTemplateSpecModel) -> type
 
 
 class GenDSPySignatureTemplate(TypedTemplate):
-    """
-    Generates and renders DSPy Signature classes to disk using Jinja2 templates.
-    """
+    """Generates and renders DSPy Signature classes to disk using Jinja2 templates."""
 
     source = '''from dspy import Signature
 from dspy.signatures.field import InputField, OutputField

@@ -1,5 +1,4 @@
-"""
-This code imports the necessary libraries and creates a Typer app. It also defines a class for a JSToFastAPIModule and a function for converting JS source code to FastAPI source code. The code also creates a streamlit component and a router for handling requests to convert JS code to FastAPI code. Finally, the main function initializes the necessary tools and calls the function to convert the provided JS source code to FastAPI code.
+"""This code imports the necessary libraries and creates a Typer app. It also defines a class for a JSToFastAPIModule and a function for converting JS source code to FastAPI source code. The code also creates a streamlit component and a router for handling requests to convert JS code to FastAPI code. Finally, the main function initializes the necessary tools and calls the function to convert the provided JS source code to FastAPI code.
 """
 import dspy
 from typer import Typer
@@ -7,8 +6,7 @@ from typer import Typer
 from dspygen.signatures.generate_answer import JSToFastAPISig
 from dspygen.utils.dspy_tools import init_dspy
 
-
-app = Typer()        
+app = Typer()
 
 
 class JSToFastAPIModule(dspy.Module):
@@ -29,7 +27,7 @@ def js_to_fast_api_call(js_source):
 def call(js_source):
     """JSToFastAPIModule"""
     init_dspy()
-    
+
     print(js_to_fast_api_call(js_source=js_source))
 
 
@@ -37,13 +35,15 @@ def call(js_source):
 
 
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/js_to_fast_api/")
 async def js_to_fast_api_route(data: dict):
     # Your code generation logic here
     init_dspy()
-    
+
     print(data)
     return js_to_fast_api_call(**data)
 
@@ -65,7 +65,7 @@ async function exchangeAuthorizationCode(authorizationCode) {
   const clientId = 'your-client-id';
   const clientSecret = 'your-client-secret';
   const redirectUri = 'https://your-app.com/callback';
-  
+
   const requestBody = {
     grant_type: 'authorization_code',
     code: authorizationCode,
@@ -93,9 +93,9 @@ def main():
     js_source = TEST
     result = js_to_fast_api_call(js_source=js_source)
 
-    with open("fast_code.py", 'w') as f:
+    with open("fast_code.py", "w") as f:
         f.write(result)
-    
+
 
 if __name__ == "__main__":
     main()

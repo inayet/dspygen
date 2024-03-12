@@ -5,8 +5,8 @@ from loguru import logger
 
 from dspygen.rdddy.abstract_actor import AbstractActor
 from dspygen.rdddy.abstract_event import AbstractEvent
-from dspygen.rdddy.actor_system import ActorSystem
 from dspygen.rdddy.abstract_message import AbstractMessage
+from dspygen.rdddy.actor_system import ActorSystem
 
 
 class LogSink:

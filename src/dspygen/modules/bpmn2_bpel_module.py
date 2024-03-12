@@ -2,12 +2,12 @@
 
 """
 import dspy
+
 from dspygen.utils.dspy_tools import init_dspy
 
 
 class BPMN2BPELTransformation(dspy.Signature):
-    """
-    A Signature for converting BPMN diagrams to BPEL representations. This encapsulation
+    """A Signature for converting BPMN diagrams to BPEL representations. This encapsulation
     enables the execution of business processes defined in BPMN diagrams through BPEL engines,
     thereby facilitating automation and operational efficiency.
 
@@ -16,12 +16,17 @@ class BPMN2BPELTransformation(dspy.Signature):
     from BPMN's graphical model to BPEL's executable process representation.
     """
 
-    bpmn_data = dspy.InputField(desc="BPMN diagram in an acceptable digital format (e.g., XML, JSON).")
+    bpmn_data = dspy.InputField(
+        desc="BPMN diagram in an acceptable digital format (e.g., XML, JSON)."
+    )
     transformation_parameters = dspy.InputField(
         desc="Optional parameters to guide the transformation process, such as optimization preferences, specific conversion rules, or execution context.",
-        required=False)
+        required=False,
+    )
 
-    bpel_representation = dspy.OutputField(desc="The BPEL representation of the input BPMN diagram, formatted as XML.")
+    bpel_representation = dspy.OutputField(
+        desc="The BPEL representation of the input BPMN diagram, formatted as XML."
+    )
 
 
 class BPMN2BPELModule(dspy.Module):
@@ -34,6 +39,7 @@ class BPMN2BPELModule(dspy.Module):
 
 
 from typer import Typer
+
 app = Typer()
 
 
@@ -45,11 +51,9 @@ def call(bpmn):
     print(bpmn2_bpel_call(bpmn=bpmn))
 
 
-
 def bpmn2_bpel_call(bpmn):
     bpmn2_bpel = BPMN2BPELModule()
     return bpmn2_bpel.forward(bpmn=bpmn)
-
 
 
 def main():
@@ -58,9 +62,10 @@ def main():
     print(bpmn2_bpel_call(bpmn=bpmn))
 
 
-
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/bpmn2_bpel/")
 async def bpmn2_bpel_route(data: dict):
@@ -69,7 +74,6 @@ async def bpmn2_bpel_route(data: dict):
 
     print(data)
     return bpmn2_bpel_call(**data)
-
 
 
 """

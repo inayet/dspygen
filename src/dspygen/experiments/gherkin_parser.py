@@ -5,7 +5,6 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Union
 
 import inflection
-
 from slugify import slugify
 
 from dspygen.typetemp.environment.typed_environment import environment as env
@@ -26,20 +25,20 @@ env.filters["remove_angle_brackets"] = remove_angle_brackets
 class GherkinStep:
     step_type: str
     description: str
-    arguments: Union[None, List[str]]
+    arguments: None | list[str]
 
 
 @dataclass
 class GherkinScenario:
     name: str
-    steps: List[GherkinStep]
-    examples: List[Dict[str, str]] = field(default_factory=list)
+    steps: list[GherkinStep]
+    examples: list[dict[str, str]] = field(default_factory=list)
 
 
 @dataclass
 class GherkinFeature:
     name: str
-    scenarios: List[GherkinScenario]
+    scenarios: list[GherkinScenario]
 
 
 class GherkinParser:
@@ -56,7 +55,7 @@ class GherkinParser:
         """Slugify the feature name"""
         return slugify(line.replace("Feature:", "").strip())
 
-    def _extract_scenarios(self, lines: List[str]) -> List[GherkinScenario]:
+    def _extract_scenarios(self, lines: list[str]) -> list[GherkinScenario]:
         scenarios = []
         current_scenario = None
         current_steps = []
@@ -91,7 +90,7 @@ class GherkinParser:
                     example_keys = [k.strip() for k in line.split("|")[1:-1]]
                 else:
                     example_values = [v.strip() for v in line.split("|")[1:-1]]
-                    example_dict = dict(zip(example_keys, example_values))
+                    example_dict = dict(zip(example_keys, example_values, strict=False))
                     current_examples.append(example_dict)
 
             elif line.startswith(("Given ", "When ", "Then ", "And ")):

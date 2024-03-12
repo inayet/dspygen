@@ -5,8 +5,7 @@ from dspygen.utils.dspy_tools import init_dspy
 
 
 def find_all_inputs(page):
-    """
-    Finds all input elements on a given Playwright page.
+    """Finds all input elements on a given Playwright page.
 
     Args:
         page: The Playwright page object to search within.
@@ -14,7 +13,6 @@ def find_all_inputs(page):
     Returns:
         A list of Playwright element handles representing the input elements.
     """
-
     input_elements = page.query_selector_all('input')
 
     # Optional filtering - You can uncomment and adjust any of these:

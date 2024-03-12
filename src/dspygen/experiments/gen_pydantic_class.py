@@ -1,8 +1,7 @@
-import inflection
-from pydantic import BaseModel, Field
-
 import dspy
+import inflection
 from dspy import InputField, OutputField, Signature
+from pydantic import BaseModel, Field
 
 from dspygen.experiments.gen_pydantic_instance import GenPydanticInstance
 from dspygen.typetemp.functional import render

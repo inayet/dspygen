@@ -1,11 +1,9 @@
 import dspy
 import pyperclip
-from typer import Typer
 from inflection import underscore
+from typer import Typer
 
-app = Typer(
-    help="Generate a file name from any text."
-)
+app = Typer(help="Generate a file name from any text.")
 
 
 class FileContentToFileNameModule(dspy.Module):

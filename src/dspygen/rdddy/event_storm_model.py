@@ -1,4 +1,4 @@
-from pydantic import Field, BaseModel
+from pydantic import BaseModel, Field
 
 from dspygen.experiments.gen_pydantic_instance import instance
 from dspygen.rdddy.abstract_event import AbstractEvent
@@ -6,7 +6,7 @@ from dspygen.utils.dspy_tools import init_dspy
 
 
 class EventStormingDomainSpecificationModel(BaseModel):
-    """Integrates Event Storming with RDDDY and DFLSS to capture and analyze domain complexities through events, commands, and queries, using Hoare logic for correctness. It serves as a repository for interactions identified in Event Storming, enhancing system responsiveness and process efficiency. This model educates on designing and verifying systems aligned with domain requirements and operational excellence. CamelCase only. """
+    """Integrates Event Storming with RDDDY and DFLSS to capture and analyze domain complexities through events, commands, and queries, using Hoare logic for correctness. It serves as a repository for interactions identified in Event Storming, enhancing system responsiveness and process efficiency. This model educates on designing and verifying systems aligned with domain requirements and operational excellence. CamelCase only."""
 
     domain_events: list[AbstractEvent] = Field(
         ...,

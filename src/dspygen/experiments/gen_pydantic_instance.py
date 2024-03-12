@@ -1,12 +1,11 @@
 import ast
-import dspy
 import inspect
 import logging
-from typing import Optional, TypeVar, Type, Set
+from typing import Optional, Set, Type, TypeVar
 
-from pydantic import BaseModel, ValidationError
-
+import dspy
 from dspy import Assert, ChainOfThought, InputField, OutputField, Signature
+from pydantic import BaseModel, ValidationError
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
@@ -69,7 +68,7 @@ class GenPydanticInstance(dspy.Module):
 
     def __init__(
         self,
-        model: Type[T],
+        model: type[T],
         generate_sig=PromptToPydanticInstanceSignature,
         correct_generate_sig=PromptToPydanticInstanceErrorSignature,
     ):
@@ -137,13 +136,12 @@ class GenPydanticInstance(dspy.Module):
         return self.forward(prompt=prompt)
 
 
-from pydantic import BaseModel
-from typing import Type, Set
-import inspect
 
-def get_model_source(model: Type[BaseModel], already_seen: Set[Type[BaseModel]] = None) -> str:
-    """
-    Recursively grab the source code of a given Pydantic model and all related models, including the inheritance chain.
+from pydantic import BaseModel
+
+
+def get_model_source(model: type[BaseModel], already_seen: set[type[BaseModel]] = None) -> str:
+    """Recursively grab the source code of a given Pydantic model and all related models, including the inheritance chain.
 
     Args:
         model: The Pydantic model class to extract source code for.
@@ -246,7 +244,9 @@ You are a Event Storm assistant that comes up with Events, Commands, and Queries
 def main():
     import dspy
 
-    from dspygen.rdddy.event_storm_domain_specification_model import EventStormingDomainSpecificationModel
+    from dspygen.rdddy.event_storm_domain_specification_model import (
+        EventStormingDomainSpecificationModel,
+    )
 
     lm = dspy.OpenAI(max_tokens=2000)
     dspy.settings.configure(lm=lm)
@@ -256,7 +256,7 @@ def main():
     print(model_inst)
 
 
-def instance(model: Type[BaseModel], prompt: str) -> BaseModel:
+def instance(model: type[BaseModel], prompt: str) -> BaseModel:
     model_module = GenPydanticInstance(model)
     return model_module(prompt)
 

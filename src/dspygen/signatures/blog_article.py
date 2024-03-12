@@ -3,8 +3,7 @@ from dspy.signatures.field import InputField, OutputField
 
 
 class BlogArticle(Signature):
-    """
-    Generate a blog article based on a celebrity and news.
+    """Generate a blog article based on a celebrity and news.
     """
 
     celebrity = InputField(desc="The celebrity to base the article on.")

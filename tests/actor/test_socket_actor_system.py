@@ -1,8 +1,9 @@
 from unittest.mock import AsyncMock
 
+import pytest
+
 from dspygen.rdddy.abstract_query import AbstractQuery
 from dspygen.rdddy.actor_system import ActorSystem
-import pytest
 
 
 @pytest.fixture()

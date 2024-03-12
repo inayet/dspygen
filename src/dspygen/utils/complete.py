@@ -13,7 +13,7 @@ class LLMConfig:
     top_p: float = 1.0
     frequency_penalty: float = 0.0
     presence_penalty: float = 0.0
-    stop: Optional[list[str]] = field(default=None)
+    stop: list[str] | None = field(default=None)
 
     def update(self, **kwargs):
         for key, value in kwargs.items():
@@ -23,7 +23,7 @@ class LLMConfig:
                 raise ValueError(f"Invalid config key: {key}")
 
 
-def create(config: Optional[LLMConfig] = None, **kwargs):
+def create(config: LLMConfig | None = None, **kwargs):
     if config:
         config.update(**kwargs)
         prompt = config.prompt
@@ -57,7 +57,7 @@ def create(config: Optional[LLMConfig] = None, **kwargs):
     return response.choices[0].text.strip()
 
 
-async def acreate(*, config: Optional[LLMConfig] = None, **kwargs):
+async def acreate(*, config: LLMConfig | None = None, **kwargs):
     if config:
         config.update(**kwargs)
         prompt = config.prompt
@@ -151,7 +151,7 @@ def chat(
     raw_msg=False,
     write_path=None,
     mode="a+",
-) -> Union[str, dict]:
+) -> str | dict:
     """Customized completion function that interacts with the OpenAI API, capable of handling prompts, system messages,
     and specific functions. If the content length is too long, it will shorten the content and retry.
 
@@ -258,7 +258,7 @@ async def achat(
     raw_msg=False,
     write_path=None,
     mode="a+",
-) -> Union[str, dict]:
+) -> str | dict:
     """Customized completion function that interacts with the OpenAI API, capable of handling prompts, system messages,
     and specific functions. If the content length is too long, it will shorten the content and retry.
     """

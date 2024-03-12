@@ -1,4 +1,4 @@
-"""The AbstractActor Module for Reactive Domain-Driven Design (RDDDY) Framework
+r"""The AbstractActor Module for Reactive Domain-Driven Design (RDDDY) Framework
 ---------------------------------------------------------------------
 
 This module implements the core Actor abstraction within the RDDDY framework, providing a robust foundation for building reactive, domain-driven systems that are scalable, maintainable, and capable of handling complex, concurrent interactions. The Actor model encapsulates both state and behavior, allowing for asynchronous message passing as the primary means of communication between actors, thus fostering loose coupling and enhanced system resilience.
@@ -92,7 +92,7 @@ class AbstractActor:
         map_handlers(): Maps message types to corresponding handler methods.
     """
 
-    def __init__(self, actor_system: "ActorSystem", actor_id: Optional[int] = None):
+    def __init__(self, actor_system: "ActorSystem", actor_id: int | None = None):
         self.actor_system = actor_system
         self.actor_id = actor_id or id(self)
         self.mailbox = rx.subject.Subject()
@@ -220,7 +220,7 @@ class AbstractActor:
 
         await self.actor_system.publish(message)
 
-    def map_handlers(self) -> dict[Type[AbstractMessage], Callable]:
+    def map_handlers(self) -> dict[type[AbstractMessage], Callable]:
         """Maps message types to corresponding handler methods.
 
         Preconditions (Pre):

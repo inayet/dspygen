@@ -1,4 +1,6 @@
-from dspygen.rdddy.event_storm_domain_specification_model import EventStormingDomainSpecificationModel
+from dspygen.rdddy.event_storm_domain_specification_model import (
+    EventStormingDomainSpecificationModel,
+)
 from dspygen.typetemp.template.typed_template import TypedTemplate
 
 base_class_mapping = {
@@ -25,7 +27,7 @@ class GenRDDDYClassTemplate(TypedTemplate):
 
 class {{ classname }}({{ base_class_name }}):
     \"\"\"Generated class for {{ classname }}, inheriting from {{ base_class_name }}.\"\"\"
-    
+
 """
     to = "{{ base_class_name | underscore }}/{{ classname | underscore }}.py"
 

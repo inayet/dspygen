@@ -1,28 +1,36 @@
-"""
-The source code imports the necessary libraries and modules, including dspy and Typer. It also defines a class called GenKeywordArgumentsModule, which contains a forward function that takes in a prompt and function and returns a keyword_arguments_dict. The gen_keyword_arguments_call function uses the GenKeywordArgumentsModule to generate keyword arguments for a given prompt and function. The app.command() decorator defines a command for the Typer app, which calls the gen_keyword_arguments_call function. The main function initializes dspy and calls the gen_keyword_arguments_call function with empty prompt and function parameters. The TODO comments indicate future plans for the code, including adding a streamlit component and a FastAPI route.
+"""The source code imports the necessary libraries and modules, including dspy and Typer. It also defines a class called GenKeywordArgumentsModule, which contains a forward function that takes in a prompt and function and returns a keyword_arguments_dict. The gen_keyword_arguments_call function uses the GenKeywordArgumentsModule to generate keyword arguments for a given prompt and function. The app.command() decorator defines a command for the Typer app, which calls the gen_keyword_arguments_call function. The main function initializes dspy and calls the gen_keyword_arguments_call function with empty prompt and function parameters. The TODO comments indicate future plans for the code, including adding a streamlit component and a FastAPI route.
 """
 import ast
 import inspect
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 import dspy
 from typer import Typer
 
-from dspygen.experiments.function_call import get_current_weather, get_n_day_weather_forecast
+from dspygen.experiments.function_call import (
+    get_current_weather,
+    get_n_day_weather_forecast,
+)
 from dspygen.utils.dspy_tools import init_dspy
 
 
 class GenerateKeywordArgumentsSignature(dspy.Signature):
-    """
-    A Signature class designed to generate keyword arguments for a function call
+    """A Signature class designed to generate keyword arguments for a function call
     based on a given prompt and the function's signature.
     """
-    prompt = dspy.InputField(desc="Description or context to generate the keyword arguments.")
-    function_signature = dspy.InputField(desc="A dictionary representing the function's signature, including name, docstring, and keyword arguments.")
 
-    keyword_arguments_dict_for_function = dspy.OutputField(desc="A dictionary containing the generated keyword arguments for the specified function.",
-                                                           prefix="kwargs_for_function_from_prompt: dict = ")
+    prompt = dspy.InputField(
+        desc="Description or context to generate the keyword arguments."
+    )
+    function_signature = dspy.InputField(
+        desc="A dictionary representing the function's signature, including name, docstring, and keyword arguments."
+    )
 
+    keyword_arguments_dict_for_function = dspy.OutputField(
+        desc="A dictionary containing the generated keyword arguments for the specified function.",
+        prefix="kwargs_for_function_from_prompt: dict = ",
+    )
 
 
 app = Typer()
@@ -45,8 +53,12 @@ def function_to_dict(func: Callable) -> dict:
 
     for name, param in params.items():
         # Check if the parameter has a type annotation; if not, default to str
-        param_type = param.annotation if param.annotation is not inspect.Parameter.empty else str
-        output["keyword_arguments"][name] = param_type.__name__  # Store the name of the type
+        param_type = (
+            param.annotation if param.annotation is not inspect.Parameter.empty else str
+        )
+        output["keyword_arguments"][
+            name
+        ] = param_type.__name__  # Store the name of the type
 
     # Remove the return type annotation if present
     if "return" in output["keyword_arguments"]:
@@ -72,13 +84,18 @@ class GenKeywordArgumentsModule(dspy.Module):
             if param.annotation != inspect.Parameter.empty and name in kwargs:
                 expected_type = param.annotation
                 if not isinstance(kwargs[name], expected_type):
-                    dspy.Assert(False, f"Argument '{name}' expected type {expected_type}, got {type(kwargs[name])}")
+                    dspy.Assert(
+                        False,
+                        f"Argument '{name}' expected type {expected_type}, got {type(kwargs[name])}",
+                    )
 
         return True
 
     def forward(self, prompt: str, function: Callable) -> dict:
         pred = dspy.ChainOfThought(GenerateKeywordArgumentsSignature)
-        result = pred(prompt=prompt, function_signature=str(function_to_dict(function))).keyword_arguments_dict_for_function
+        result = pred(
+            prompt=prompt, function_signature=str(function_to_dict(function))
+        ).keyword_arguments_dict_for_function
 
         # Validate the output
         try:
@@ -90,15 +107,21 @@ class GenKeywordArgumentsModule(dspy.Module):
                 return kwargs
         except (AssertionError, SyntaxError) as e:
             # Handle the failure by attempting recovery or fallback logic
-            pred = dspy.ChainOfThought("prompt, function, error -> keyword_arguments_dict_for_function")
-            result = pred(prompt=prompt, function=str(function_to_dict(function)), error=str(e)).keyword_arguments_dict_for_function
+            pred = dspy.ChainOfThought(
+                "prompt, function, error -> keyword_arguments_dict_for_function"
+            )
+            result = pred(
+                prompt=prompt, function=str(function_to_dict(function)), error=str(e)
+            ).keyword_arguments_dict_for_function
             kwargs = eval_dict_str(result)
 
             if self.validate_output(kwargs, function):
                 return kwargs
             else:
-                raise ValueError(f"Generated keyword arguments {kwargs} do not match the function's requirements "
-                                 f"{str(function_to_dict(function))}")
+                raise ValueError(
+                    f"Generated keyword arguments {kwargs} do not match the function's requirements "
+                    f"{function_to_dict(function)!s}"
+                )
 
 
 def gen_keyword_arguments_call(prompt: str, function: Callable) -> dict:
@@ -115,7 +138,7 @@ def invoke(fn: Callable, prompt: str):
 def call(prompt, function):
     """GenKeywordArgumentsModule"""
     init_dspy()
-    
+
     print(gen_keyword_arguments_call(prompt=prompt, function=function))
 
 

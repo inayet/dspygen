@@ -5,4 +5,3 @@ class AbstractTask:
     the system can orchestrate complex operations while maintaining clarity and separation of concerns.
     """
 
-    pass

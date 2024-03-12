@@ -4,7 +4,8 @@ method, it checks if a context is provided and if not, sets a default context. T
 passed through a `ChainOfThought` model to generate the pep8_docs. The `source_code_pep8_docs_call` function calls
 the `forward` method and returns the result. In the `call` command, the source code is passed through `pyperclip` and
 the result is printed and copied to the clipboard. The `main` function sets the `lm` variable to use the `OpenAI`
-model and calls the `source_code_pep8_docs_call` function with an empty source code to test it."""
+model and calls the `source_code_pep8_docs_call` function with an empty source code to test it.
+"""
 import dspy
 import pyperclip
 import typer

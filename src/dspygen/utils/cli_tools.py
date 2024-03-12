@@ -5,8 +5,7 @@ from dspygen.utils.dspy_tools import init_dspy
 
 
 class ChatbotAssistance(dspy.Signature):
-    """
-    Provides guidance and assistance to users in developing projects with DSPyGen,
+    """Provides guidance and assistance to users in developing projects with DSPyGen,
     leveraging the integrated chatbot functionality.
     """
     # The question or query from the user.

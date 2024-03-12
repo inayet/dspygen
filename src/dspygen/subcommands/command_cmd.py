@@ -18,7 +18,7 @@ app = typer.Typer()
 def {{ sub_command_name }}_{{ new_command_name }}():
     """{{ new_command_name }}"""
     typer.echo("Running {{ new_command_name }} subcommand.")
-    
+
 '''
 
 
@@ -27,8 +27,7 @@ def {{ sub_command_name }}_{{ new_command_name }}():
     name="new",
 )
 def module(subcommand_name: str, new_command_name: str):
-    """
-    Generate a new subcommand module with the given name.
+    """Generate a new subcommand module with the given name.
     Example usage: dspygen command new new_command
     """
     script_dir = Path(__file__).parent
@@ -62,8 +61,7 @@ def {{ sub_command_name }}_{{ new_command_name }}():
 
 @app.command(name="add")
 def add_command(sub_command_name: str, new_command_name: str):
-    """
-    Add a new command to an existing subcommand module.
+    """Add a new command to an existing subcommand module.
     Example usage: dspygen command add existing_command new_command
     """
     script_dir = Path(__file__).parent

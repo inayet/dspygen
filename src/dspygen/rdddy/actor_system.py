@@ -46,10 +46,10 @@ The actor_system.py module, guided by the AMCN, provides a robust foundation for
 import asyncio
 from asyncio import Future
 from typing import TYPE_CHECKING, Optional, TypeVar, cast
-from paho.mqtt import client as mqtt_client
 
 import reactivex as rx
 from loguru import logger
+from paho.mqtt import client as mqtt_client
 from paho.mqtt.enums import CallbackAPIVersion
 from reactivex import operators as ops
 from reactivex.scheduler.eventloop import AsyncIOScheduler
@@ -88,7 +88,7 @@ class ActorSystem:
     Instantiate an ActorSystem object within your application to manage actors and coordinate message passing. Use its methods to create actors, send messages, and wait for specific events within the system.
     """
 
-    def __init__(self, loop: Optional[asyncio.AbstractEventLoop] = None, mqtt_broker="localhost", mqtt_port=1883):
+    def __init__(self, loop: asyncio.AbstractEventLoop | None = None, mqtt_broker="localhost", mqtt_port=1883):
         """Initializes the ActorSystem.
 
         Args:

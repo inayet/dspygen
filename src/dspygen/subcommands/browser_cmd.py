@@ -14,7 +14,7 @@ app = AsyncTyper()
 
 @app.command(name="browser")
 def browser():
-    """browser"""
+    """Browser"""
     typer.echo("Running browser subcommand.")
 
 

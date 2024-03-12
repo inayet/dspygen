@@ -1,8 +1,8 @@
 import asyncio
 import os
-import psutil
 from asyncio.subprocess import Process
 
+import psutil
 from loguru import logger
 
 from dspygen.rdddy.abstract_actor import AbstractActor

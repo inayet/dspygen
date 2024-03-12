@@ -1,10 +1,11 @@
 """
 
 """
-import dspy
-from dspygen.utils.dspy_tools import init_dspy
-
 from enum import Enum
+
+import dspy
+
+from dspygen.utils.dspy_tools import init_dspy
 
 
 class MermaidDiagramType(Enum):
@@ -30,17 +31,18 @@ quadrantChart, requirementDiagram, gitGraph, mindmap, timeline"""
 
 
 class MermaidSignature(dspy.Signature):
-    """
-    Generate MermaidJS code.
-    """
+    """Generate MermaidJS code."""
+
     # Input fields
     prompt = dspy.InputField(desc="Detailed description or instructions")
     mermaid_type = dspy.InputField(desc=diagram_desc)
 
     # Output fields
     documentation = dspy.OutputField(desc="Documentation for the code.")
-    mermaid_js_code = dspy.OutputField(desc="Generated MermaidJS code matching the prompt and mermaid_type.",
-                                       prefix="```mermaid\n")
+    mermaid_js_code = dspy.OutputField(
+        desc="Generated MermaidJS code matching the prompt and mermaid_type.",
+        prefix="```mermaid\n",
+    )
 
 
 class MermaidJSModule(dspy.Module):
@@ -49,7 +51,7 @@ class MermaidJSModule(dspy.Module):
     def forward(self, prompt, mermaid_type=MermaidDiagramType.FLOWCHART):
         pred = dspy.Predict(MermaidSignature)
         result = pred(prompt=prompt, mermaid_type=mermaid_type.value)
-        output = result.mermaid_js_code.rstrip('```')
+        output = result.mermaid_js_code.rstrip("```")
         return output
 
 

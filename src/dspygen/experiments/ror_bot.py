@@ -36,7 +36,7 @@ def main():
 #     # Use subprocess to call the command
     for cmd in rails_cmds:
         print(cmd)
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, check=False)
         print(result)
 #
 #         # Print the output of the command

@@ -7,6 +7,6 @@ class AbstractRepository(AbstractActor):
     management layers, enabling the decoupling of domain logic from data persistence concerns. By creating subclasses
     of AbstractRepository, developers can ensure smooth interactions with the domain entities, offering a clean,
     cohesive API for querying and persisting domain objects, thereby supporting the principles of domain-driven
-    design."""
+    design.
+    """
 
-    pass

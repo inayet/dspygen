@@ -36,8 +36,7 @@ def slugify(text):
 
 
 def find_project_root(current_path: Path | str = Path(__file__)) -> Path:
-    """
-    Traverse up from the current path to find the project root marker.
+    """Traverse up from the current path to find the project root marker.
     """
     if isinstance(current_path, str):
         current_path = Path(current_path)
@@ -87,7 +86,7 @@ def pages_dir(file_name="") -> Path:
 
 def get_source(filename):
     # Read the source code from the file
-    with open(filename, 'r') as file:
+    with open(filename) as file:
         source_code = file.read().replace(" ", "")
 
     return source_code

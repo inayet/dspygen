@@ -33,8 +33,7 @@ def cli_help(question: str = ""):
 # Define a command to gather and save help text for subcommands
 @app.command(name="gather")
 def gather_help(output_file: str = "help.txt"):
-    """
-    Gather and save help text for subcommands to a file.
+    """Gather and save help text for subcommands to a file.
     Example usage: python your_app.py gather-help help_output.txt
     """
     help_text = subprocess.check_output(["dspygen", "--help"], text=True)
@@ -57,7 +56,7 @@ def gather_help(output_file: str = "help.txt"):
             file.write(help_text)
         typer.echo(f"Help text for subcommands saved to '{output_file}'.")
     except Exception as e:
-        typer.echo(f"Error saving help text: {str(e)}")
+        typer.echo(f"Error saving help text: {e!s}")
 
 
 def main():
@@ -82,7 +81,7 @@ def main():
             file.write(help_text)
         typer.echo(f"Help text for subcommands saved to '{output_file}'.")
     except Exception as e:
-        typer.echo(f"Error saving help text: {str(e)}")
+        typer.echo(f"Error saving help text: {e!s}")
 
 
 if __name__ == '__main__':

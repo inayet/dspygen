@@ -39,7 +39,7 @@ class TypedPythonSource(RenderMixin):
         rendered_func = self._render(**kwargs)
         return parse(rendered_func).body[0]
 
-    def render_class(self, func_tmpls: Optional[list[str]] = None, **kwargs):
+    def render_class(self, func_tmpls: list[str] | None = None, **kwargs):
         """Renders the class template and returns the compiled class, optionally including methods.
 
         :param func_tmpls: A list of template strings for functions to be included in the class

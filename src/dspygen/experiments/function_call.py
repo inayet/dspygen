@@ -1,6 +1,5 @@
 def get_current_weather(location: str, temperature_unit: str) -> str:
-    """
-    Get the current weather for a given location in the specified format.
+    """Get the current weather for a given location in the specified format.
 
     :param location: The city and state, e.g., "San Francisco, CA".
     :param temperature_unit: The temperature unit to use, either "celsius" or "fahrenheit".
@@ -14,8 +13,7 @@ def get_current_weather(location: str, temperature_unit: str) -> str:
 def get_n_day_weather_forecast(
     location: str, temperature_unit: str, num_days: int
 ) -> str:
-    """
-    Get an N-day weather forecast for a given location in the specified format.
+    """Get an N-day weather forecast for a given location in the specified format.
 
     :param location: The city and state, e.g., "San Francisco, CA".
     :param temperature_unit: The temperature unit to use, either "celsius" or "fahrenheit".

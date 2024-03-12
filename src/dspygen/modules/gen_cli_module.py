@@ -5,7 +5,8 @@ gen_cli_call function then uses this class to generate the CLI based on a given 
 main function that initializes the dspy library and calls the gen_cli_call function with an empty CLI concept.
 Additionally, the script includes a streamlit component from the fastapi library and a router that defines a post
 route for generating the CLI. The gen_cli_route function uses the gen_cli_call function to generate the CLI based on
-the data provided in the post request."""
+the data provided in the post request.
+"""
 import dspy
 from pydantic import BaseModel, Field
 from typer import Typer
@@ -37,7 +38,7 @@ def gen_cli_call(cli_concept):
 def call(cli_concept):
     """GenCLIModule"""
     init_dspy()
-    
+
     print(gen_cli_call(cli_concept=cli_concept))
 
 
@@ -98,8 +99,8 @@ def main():
 
     print(concept)
 
-    model = gen_pydantic_instance_call(prompt=concept,
-        root_model=TyperCLI, child_models=[TyperCommand]
+    model = gen_pydantic_instance_call(
+        prompt=concept, root_model=TyperCLI, child_models=[TyperCommand]
     )
 
     print(model.to_yaml())
@@ -118,22 +119,24 @@ def main():
 
     print("CLI application and tests generated.")
 
+
 from fastapi import APIRouter
+
 router = APIRouter()
+
 
 @router.post("/gen_cli/")
 async def gen_cli_route(data: dict):
     # Your code generation logic here
     init_dspy()
-    
+
     print(data)
     return gen_cli_call(**data)
 
 
 def gen_concept(cli_concept):
     init_dspy()
-    style = ("Verbose output that simulates the --help command of the synthetic"
-             "CLI.")
+    style = "Verbose output that simulates the --help command of the synthetic" "CLI."
 
     pred = dspy.Predict("cli_concept, style -> synthetic_cli_help")
     result = pred(cli_concept=cli_concept, style=style).synthetic_cli_help

@@ -8,8 +8,7 @@ conn = sqlite3.connect("Chinook.db")
 
 
 def execute_query(query: str) -> str:
-    """
-    Executes a SQL query against the database and returns the results as a string.
+    """Executes a SQL query against the database and returns the results as a string.
 
     Parameters:
     - query (str): SQL query to be executed.
