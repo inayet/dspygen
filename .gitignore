@@ -7,8 +7,8 @@ reports/
 
 # .gitconfig
 /etc/gitconfig
-~/.ssh/.gitconfig
-~/.gitconfig
+**/.ssh/.gitconfig
+**/.gitconfig
 
 # Data files
 *.csv*

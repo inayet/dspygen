@@ -44,6 +44,7 @@ psutil = "^5.9.8"
 st-pages = "^0.4.5"
 pykka = "^4.0.2"
 nano = "^0.10.0"
+git-filter-repo = "^2.38.0"
 
 [tool.poetry.group.test.dependencies]  # https://python-poetry.org/docs/master/managing-dependencies/
 coverage = { extras = ["toml"], version = ">=7.2.5" }

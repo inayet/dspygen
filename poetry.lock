@@ -1281,6 +1281,17 @@ ssh = ["paramiko"]
 tqdm = ["tqdm"]
 
 [[package]]
+name = "git-filter-repo"
+version = "2.38.0"
+description = "Quickly rewrite git repository history"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "git-filter-repo-2.38.0.tar.gz", hash = "sha256:fe1753e18f0bd6d3c9b57868c8011ae7d056a6ebab706706396a15ef5312725e"},
+    {file = "git_filter_repo-2.38.0-py2.py3-none-any.whl", hash = "sha256:c2646206dfdbf06ce27c06c5b77ea33209d8e32d1e33f6bd4c25b1ccc59f9864"},
+]
+
+[[package]]
 name = "gitdb"
 version = "4.0.11"
 description = "Git Object Database"
@@ -5380,4 +5391,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "e6e6189f4a31cf92805ad055cc8ab024db4f956b238c3037d13a8919805b9ad6"
+content-hash = "b1cf61502eea926f30ef24a571f8fca6638ecaf97acf4ab954936a7b8008c197"
